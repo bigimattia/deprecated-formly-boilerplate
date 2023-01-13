@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "formly_boilerplate",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
