@@ -5,5 +5,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-form-container name="Form"></app-form-container>
+  <app-form-renderer
+    [formModel]="formModel"
+    [formFieldList]="formFields"
+    (formSubmit)="getFormEvent($event)"
+  ></app-form-renderer>
 </ion-content>

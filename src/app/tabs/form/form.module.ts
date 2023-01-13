@@ -5,15 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { FormPage } from './form.page';
 
 import { FormPageRoutingModule } from './form-routing.module';
-import { FormContainerModule } from 'src/app/components/form-container/form-container.module';
+import { FormRendererModule } from 'src/app/components/form-renderer/form-renderer.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    FormContainerModule,
-    FormPageRoutingModule
+    FormPageRoutingModule,
+    FormRendererModule
   ],
   declarations: [FormPage]
 })

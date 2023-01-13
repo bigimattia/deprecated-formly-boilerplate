@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -9,7 +9,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, ReactiveFormsModule, FormlyModule.forRoot(), FormlyBootstrapModule],
+  imports: [ CommonModule, IonicModule, ReactiveFormsModule, FormlyBootstrapModule, FormlyModule.forRoot()],
   declarations: [FormContainerComponent],
   exports: [FormContainerComponent]
 })
