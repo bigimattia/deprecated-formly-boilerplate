@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="pull-right" *ngIf="!editMode">
+      <ion-button (click)="editModeToggle()">Edit</ion-button>
+    </div>
+    <div *ngIf="editMode">
+      <ion-item>
+        <ion-label>Key: </ion-label>
+        <ion-input placeholder="Enter key" [(ngModel)]="selectedKey"></ion-input>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-select placeholder="Select type..." (ionChange)="handleChangeType($event)">
+            <ion-select-option *ngFor="let type of templateTypes" [value]="type">{{type.description}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <div class="pull-right">
+        <ion-button (click)="addTemplate()">Add</ion-button>
+        <ion-button (click)="saveForm()">Save</ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Templates</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- <app-template-container name="Form" [formModel]="formModel" [formFieldsTemplateList]="formFields" [enableEdit]="!editMode"></app-template-container> -->
+  <app-form-renderer
+  [formModel]="formModel"
+  [formFieldList]="formFields">
+  </app-form-renderer>
+</ion-content>
