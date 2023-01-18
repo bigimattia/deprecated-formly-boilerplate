@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormService } from 'src/app/services/form.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-templates',
@@ -8,49 +9,34 @@ import { FormService } from 'src/app/services/form.service';
   styleUrls: ['templates.page.scss']
 })
 export class TemplatesPage {
-  templateTypes: any[] = [{ code: 'text', description: 'Testo' }, { code: 'boolean', description: 'Booleano' }];
-  selectedType: any;
-  selectedKey: String = '';
-
-  constructor(public formService: FormService) {
-    this.formFields = this.formService.getFormFieldConfig();
-  }
-
-
-  formModel: unknown = {};
-  formFields: FormlyFieldConfig[];
-
+  public formFieldsTemplate: FormlyFieldConfig;
+  formFieldList: FormlyFieldConfig[];
   editMode: boolean = false;
+
+  constructor(public formService: FormService, public storage: StorageService) {
+    this.formFieldsTemplate = this._getDefaultTemplate();
+    this.formFieldList = this.formService.getFormFieldConfig();
+  }
   
   editModeToggle(): void {
+    this.formFieldsTemplate = this._getDefaultTemplate();
     this.editMode = !this.editMode;
   }
 
-  addTemplate(): void {
-    //launch template plugin
-    console.log('adding template', this.selectedType, this.selectedKey)
-    if(this.selectedType && this.selectedKey.length > 0) {
-      
-      var tmp_obj:any = this._buildFormObject(this.selectedKey, this.selectedType.code, {}, undefined);
-      this.formFields.push(tmp_obj)
-      console.log('added-obj', this.formFields)
-    }
+  saveTemplate(): void {
+    console.log('template: ', this.formFieldsTemplate)
+    this.formService.addFormFieldConfig(this.formFieldsTemplate);
+    this.storage.setData('formly_boilerplate_storage_data', this.formService.getFormFieldConfig());
+    console.log('saved data......',  this.formService.getFormFieldConfig(), this.storage.getData('formly_boilerplate_storage_data'))
+    this.editModeToggle();
   }
 
-  saveForm(): void {
-    this.formService.setFormFieldConfig(this.formFields);
-    this.editMode = !this.editMode;
+  _getDefaultTemplate():FormlyFieldConfig {
+    return {key: '', type:'', template: '', props: { label: '', placeholder: '', required: false }};
   }
 
-  handleChangeType(event: any): void {
-    this.selectedType = event.target.value;
-  }
-
-  private _buildFormObject(key: String, type: String, props: any, template: any) {
-    //TODO: add groups
-    if(template)
-      return { key: key, type: type, props: props, template: template};
-    else
-      return { key: key, type: type, props: props};
+  getJSON(obj:any): String {
+    if(!obj) return '';
+    return JSON.stringify(obj);
   }
 }

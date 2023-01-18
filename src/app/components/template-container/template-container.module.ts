@@ -9,9 +9,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormService } from 'src/app/services/form.service';
 import { FormRendererModule } from '../form-renderer/form-renderer.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, FontAwesomeModule, FormRendererModule],
+  imports: [ CommonModule, FormsModule, IonicModule, FontAwesomeModule, FormRendererModule, FormsModule],
   declarations: [TemplateContainerComponent],
   exports: [TemplateContainerComponent]
 })
