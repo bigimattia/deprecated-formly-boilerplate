@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormService } from 'src/app/services/form.service';
+import { JsonconverterService } from 'src/app/services/jsonconverter/jsonconverter.service';
 
 @Component({
   selector: 'app-import',
@@ -10,7 +11,7 @@ export class ImportPage {
   files: File[] = [];
   json_list: any[] = [];
 
-  constructor() { }
+  constructor(public jsonConverterSrv: JsonconverterService) { }
 
   onFileChange(fileChangeEvent: any) {
     this.files = fileChangeEvent.target.files;
@@ -22,8 +23,7 @@ export class ImportPage {
         console.log(this.files[f_idx])
         var json_file = JSON.parse(await this.files[f_idx].text());
 
-    
-    console.log('changed file.....', this.files, json_file)
+        console.log('changed file.....', this.files, json_file, this.jsonConverterSrv.convertJSON_toFormly(json_file))
       }
     }
   }
