@@ -1,11 +1,11 @@
 <div class="form-container">
   <form [formGroup]="customForm" (ngSubmit)="submitForm(customForm)" *ngIf="formFieldList">
     <formly-form [model]="formModel" [fields]="formFieldList" [form]="customForm"></formly-form>
-    <div class="form-buttons">
+    <!-- <div class="form-buttons">
       <ion-button expand="block" type="submit" color="primary" [disabled]="!customForm.valid"
         >Submit</ion-button
       >
       <ion-button expand="block" type="reset" color="medium">Clear Form</ion-button>
-    </div>
+    </div> -->
   </form>
 </div>

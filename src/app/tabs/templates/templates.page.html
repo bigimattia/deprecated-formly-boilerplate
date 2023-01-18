@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="pull-right" *ngIf="!editMode">
+      <ion-button (click)="editModeToggle()">Add</ion-button>
+    </div>
+    <div *ngIf="editMode">
+      <div class="pull-right">
+        <ion-button (click)="editModeToggle()">Cancel</ion-button>
+        <ion-button (click)="saveTemplate()">Save</ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="editMode" [fullscreen]="true">
+
+  <app-template-container name="templateContainer" [templateData]="formFieldsTemplate" ></app-template-container>
+  <!-- <app-form-renderer
+  [formModel]="formModel"
+  [formFieldList]="formFields">
+  </app-form-renderer> -->
+</ion-content>
+<ion-content *ngIf="!editMode" [fullscreen]="true">
+  <ion-list *ngIf="formFieldList && formFieldList.length > 0">
+    <ion-item *ngFor="let formField of formFieldList">
+      <ion-label>{{formField?.props?.label}}: </ion-label>
+      <ion-label>{{ getJSON(formField) }} </ion-label>
+      <ion-icon name="trash-outline" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

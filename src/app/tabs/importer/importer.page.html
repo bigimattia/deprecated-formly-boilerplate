@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Import
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Import</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true" class="ion-padding">
+      <ion-input accept="application/json" type="file" (change)="onFileChange($event)" multiple/>
+      <ion-button (click)="import()">Import</ion-button>
+  </ion-content>
+  <!-- <app-form-container name="Form"></app-form-container> -->
+</ion-content>

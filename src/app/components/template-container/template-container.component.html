@@ -1,0 +1,44 @@
+<div class="container">
+  <ion-list *ngIf="templateData">
+    <ion-item>
+      <ion-label>Key: </ion-label>
+      <ion-input placeholder="Enter key" [(ngModel)]="templateData.key"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Select type..." [(ngModel)]="templateData.type">
+        <ion-select-option *ngFor="let type of templateTypes" [value]="type.code">{{type.description}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Label: </ion-label>
+      <ion-input placeholder="Enter label" [(ngModel)]="templateData.props.label"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Placeholder: </ion-label>
+      <ion-input placeholder="Enter placeholder" [(ngModel)]="templateData.props.placeholder"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Required: </ion-label>
+      <ion-toggle slot="end" [(ngModel)]="templateData.props.required"></ion-toggle>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="templateData.types === 'input">
+      <- TODO: CUSTOM TEMPLATES ->
+      {
+            key: 'password',
+            type: 'input',
+            templateOptions: {
+                label: 'Password',
+                type: 'password',
+                placeholder: 'Enter password',
+                required: true,
+            },
+        }
+    </ion-item> -->
+    <!-- <ion-item>
+      <ion-label>Template: </ion-label>
+      <ion-input placeholder="Enter template" [(ngModel)]="templateData.template"></ion-input>
+    </ion-item> -->
+  </ion-list>
+</div>
